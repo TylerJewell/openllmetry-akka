@@ -1,0 +1,561 @@
+[
+  {
+    "name": "nonstreamed-basic",
+    "why": "Rules 1-3, 6, 8, 10 - the ordinary case, one request and one response.",
+    "kind": "response",
+    "baseUrl": "https://api.openai.com/v1",
+    "request": {
+      "model": "gpt-4o",
+      "temperature": 0.25,
+      "top_p": 0.9,
+      "max_tokens": 16,
+      "user": "bench"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "Be terse."
+      },
+      {
+        "role": "user",
+        "content": "2+2?"
+      }
+    ],
+    "response": {
+      "id": "chatcmpl-b1",
+      "model": "gpt-4o-2024-08-06",
+      "system_fingerprint": "fp_bench",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "Four."
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 11,
+        "completion_tokens": 3,
+        "total_tokens": 14,
+        "prompt_tokens_details": {
+          "cached_tokens": 7
+        }
+      }
+    }
+  },
+  {
+    "name": "nonstreamed-multi-choice",
+    "why": "Rules 8, 9 - every choice recorded, and a finish reason that is not rewritten.",
+    "kind": "response",
+    "baseUrl": "https://api.openai.com/v1",
+    "request": {
+      "model": "gpt-4o",
+      "n": 2,
+      "temperature": 0.0
+    },
+    "messages": [
+      {
+        "role": "user",
+        "content": "two answers please"
+      }
+    ],
+    "response": {
+      "id": "chatcmpl-b2",
+      "model": "gpt-4o",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "first"
+          },
+          "finish_reason": "stop"
+        },
+        {
+          "index": 1,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": "I can't help with that."
+          },
+          "finish_reason": "content_filter"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 30,
+        "completion_tokens": 8,
+        "total_tokens": 38
+      }
+    }
+  },
+  {
+    "name": "nonstreamed-tool-round-trip",
+    "why": "Rule 3 - a tool call and its result, both directions.",
+    "kind": "response",
+    "baseUrl": "https://api.openai.com/v1",
+    "request": {
+      "model": "gpt-4o"
+    },
+    "messages": [
+      {
+        "role": "user",
+        "content": "weather in Oslo?"
+      },
+      {
+        "role": "assistant",
+        "content": null,
+        "tool_calls": [
+          {
+            "id": "call_x",
+            "type": "function",
+            "function": {
+              "name": "get_weather",
+              "arguments": "{\"city\":\"Oslo\"}"
+            }
+          }
+        ]
+      },
+      {
+        "role": "tool",
+        "tool_call_id": "call_x",
+        "content": "12C, rain"
+      }
+    ],
+    "response": {
+      "id": "chatcmpl-b3",
+      "model": "gpt-4o",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "Rainy, 12C."
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 40,
+        "completion_tokens": 5,
+        "total_tokens": 45
+      }
+    }
+  },
+  {
+    "name": "nonstreamed-inline-image",
+    "why": "Rule 3 and decision D1 - a prompt carrying a base64 image.",
+    "kind": "response",
+    "baseUrl": "https://api.openai.com/v1",
+    "request": {
+      "model": "gpt-4o"
+    },
+    "messages": [
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "text",
+            "text": "what is this?"
+          },
+          {
+            "type": "image_url",
+            "image_url": {
+              "url": "https://example.com/a.png"
+            }
+          },
+          {
+            "type": "image_url",
+            "image_url": {
+              "url": "data:image/png;base64,AAAA"
+            }
+          }
+        ]
+      }
+    ],
+    "response": {
+      "id": "chatcmpl-b4",
+      "model": "gpt-4o",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "A cat."
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 90,
+        "completion_tokens": 3,
+        "total_tokens": 93
+      }
+    }
+  },
+  {
+    "name": "providers",
+    "why": "Rules 4, 5 - five base URLs in a row, one step each, over the same request model.",
+    "kind": "response-sequence",
+    "baseUrls": [
+      "https://api.openai.com/v1",
+      "https://my-res.openai.azure.com/v1",
+      "https://bedrock-runtime.us-east-1.amazonaws.com/v1",
+      "https://openrouter.ai/api/v1",
+      "https://generativelanguage.googleapis.com/v1"
+    ],
+    "request": {
+      "model": "openai/gpt-4o"
+    },
+    "messages": [
+      {
+        "role": "user",
+        "content": "hi"
+      }
+    ],
+    "response": {
+      "id": "chatcmpl-b5",
+      "model": "openai/gpt-4o-2024-08-06",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "hi"
+          },
+          "finish_reason": "length"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 5,
+        "completion_tokens": 1,
+        "total_tokens": 6
+      }
+    }
+  },
+  {
+    "name": "bedrock-model-names",
+    "why": "Rule 5 - the Bedrock rewrite, three model strings, one step each.",
+    "kind": "response-sequence",
+    "baseUrls": [
+      "https://bedrock-runtime.amazonaws.com/v1",
+      "https://bedrock-runtime.amazonaws.com/v1",
+      "https://bedrock-runtime.amazonaws.com/v1"
+    ],
+    "models": [
+      "us.anthropic.claude-3-sonnet",
+      "anthropic.claude-3-sonnet",
+      "claude-3-sonnet"
+    ],
+    "request": {
+      "model": "placeholder"
+    },
+    "messages": [
+      {
+        "role": "user",
+        "content": "hi"
+      }
+    ],
+    "response": {
+      "id": "chatcmpl-b6",
+      "model": "claude-3-sonnet",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "hi"
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 5,
+        "completion_tokens": 1,
+        "total_tokens": 6
+      }
+    }
+  },
+  {
+    "name": "streamed-sequence",
+    "why": "Rules 11-14 - the span is read after every chunk and again after the sequence closes, because when it appears is the rule and no single reading shows it.",
+    "kind": "stream",
+    "baseUrl": "https://api.openai.com/v1",
+    "request": {
+      "model": "gpt-4o",
+      "stream": true
+    },
+    "messages": [
+      {
+        "role": "user",
+        "content": "weather in Oslo?"
+      }
+    ],
+    "responseId": "chatcmpl-b7",
+    "responseModel": "gpt-4o-2024-08-06",
+    "chunks": [
+      {
+        "index": 0,
+        "role": "assistant",
+        "content": ""
+      },
+      {
+        "index": 0,
+        "content": "Let "
+      },
+      {
+        "index": 0,
+        "content": "me "
+      },
+      {
+        "index": 0,
+        "content": "check."
+      },
+      {
+        "index": 0,
+        "finish_reason": "stop"
+      },
+      {
+        "usage": {
+          "prompt_tokens": 20,
+          "completion_tokens": 9,
+          "total_tokens": 29
+        }
+      }
+    ]
+  },
+  {
+    "name": "streamed-tool-arguments",
+    "why": "Rules 7, 12 - argument fragments split across chunks, and a finish reason that is rewritten.",
+    "kind": "stream",
+    "baseUrl": "https://api.openai.com/v1",
+    "request": {
+      "model": "gpt-4o",
+      "stream": true
+    },
+    "messages": [
+      {
+        "role": "user",
+        "content": "weather in Oslo?"
+      }
+    ],
+    "responseId": "chatcmpl-b8",
+    "responseModel": "gpt-4o-2024-08-06",
+    "chunks": [
+      {
+        "index": 0,
+        "role": "assistant",
+        "content": ""
+      },
+      {
+        "index": 0,
+        "tool_calls": [
+          {
+            "index": 0,
+            "id": "call_a",
+            "name": "get_weather",
+            "arguments": "{\"ci"
+          }
+        ]
+      },
+      {
+        "index": 0,
+        "tool_calls": [
+          {
+            "index": 0,
+            "arguments": "ty\":\"Oslo\"}"
+          }
+        ]
+      },
+      {
+        "index": 0,
+        "finish_reason": "tool_calls"
+      },
+      {
+        "usage": {
+          "prompt_tokens": 20,
+          "completion_tokens": 9,
+          "total_tokens": 29
+        }
+      }
+    ]
+  },
+  {
+    "name": "stream-arrival-order-ties",
+    "why": "Rule 12 - four content deltas that all carry choice index 0, so they tie on the only key either side could sort by, delivered six ways. Without the ties this experiment would be empty: distinct choice indices would give one answer whatever the implementation did.",
+    "kind": "stream-orders",
+    "baseUrl": "https://api.openai.com/v1",
+    "request": {
+      "model": "gpt-4o",
+      "stream": true
+    },
+    "messages": [
+      {
+        "role": "user",
+        "content": "spell it"
+      }
+    ],
+    "responseId": "chatcmpl-b9",
+    "responseModel": "gpt-4o",
+    "sortKey": "index",
+    "finish": {
+      "index": 0,
+      "finish_reason": "stop"
+    },
+    "sequence": "arrival-orders",
+    "rows": [
+      {
+        "index": 0,
+        "role": "assistant",
+        "content": "A"
+      },
+      {
+        "index": 0,
+        "content": "B"
+      },
+      {
+        "index": 0,
+        "content": "C"
+      },
+      {
+        "index": 0,
+        "content": "D"
+      }
+    ]
+  },
+  {
+    "name": "stream-arrival-order-distinct",
+    "why": "Rule 12, control. Three deltas each naming a different choice index, so no two tie on the key either side could sort by. It cannot distinguish an order-dependent implementation from an order-independent one and is not meant to: it is here so the tied workload above has something to be compared against.",
+    "kind": "stream-orders",
+    "sequence": "arrival-orders",
+    "baseUrl": "https://api.openai.com/v1",
+    "request": {
+      "model": "gpt-4o",
+      "stream": true
+    },
+    "messages": [
+      {
+        "role": "user",
+        "content": "three answers"
+      }
+    ],
+    "responseId": "chatcmpl-b12",
+    "responseModel": "gpt-4o",
+    "sortKey": "index",
+    "rows": [
+      {
+        "index": 0,
+        "role": "assistant",
+        "content": "A"
+      },
+      {
+        "index": 1,
+        "role": "assistant",
+        "content": "B"
+      },
+      {
+        "index": 2,
+        "role": "assistant",
+        "content": "C"
+      }
+    ],
+    "finish": {
+      "index": 0,
+      "finish_reason": "stop"
+    }
+  },
+  {
+    "name": "failure",
+    "why": "Rule 15 - the call fails and the span still carries what was already known.",
+    "kind": "failure",
+    "baseUrl": "https://api.openai.com/v1",
+    "request": {
+      "model": "gpt-4o"
+    },
+    "messages": [
+      {
+        "role": "user",
+        "content": "hi"
+      }
+    ],
+    "status": 500,
+    "errorBody": {
+      "error": {
+        "message": "boom",
+        "type": "server_error"
+      }
+    },
+    "expectedType": "InternalServerError"
+  },
+  {
+    "name": "content-off",
+    "why": "Rule 16 - the same call with content tracing off.",
+    "kind": "response",
+    "traceContent": false,
+    "baseUrl": "https://api.openai.com/v1",
+    "request": {
+      "model": "gpt-4o"
+    },
+    "messages": [
+      {
+        "role": "user",
+        "content": "a secret"
+      }
+    ],
+    "response": {
+      "id": "chatcmpl-b10",
+      "model": "gpt-4o",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "ok"
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 5,
+        "completion_tokens": 1,
+        "total_tokens": 6
+      }
+    }
+  },
+  {
+    "name": "suppressed",
+    "why": "Rule 17 - the call is suppressed and no span exists.",
+    "kind": "response",
+    "suppressed": true,
+    "baseUrl": "https://api.openai.com/v1",
+    "request": {
+      "model": "gpt-4o"
+    },
+    "messages": [
+      {
+        "role": "user",
+        "content": "hi"
+      }
+    ],
+    "response": {
+      "id": "chatcmpl-b11",
+      "model": "gpt-4o",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "ok"
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 5,
+        "completion_tokens": 1,
+        "total_tokens": 6
+      }
+    }
+  }
+]

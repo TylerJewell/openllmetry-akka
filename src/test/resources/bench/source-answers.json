@@ -1,0 +1,729 @@
+{
+  "answers": {
+    "nonstreamed-basic": [
+      {
+        "step": 0,
+        "spanPresent": true,
+        "name": "openai.chat",
+        "kind": "CLIENT",
+        "status": "UNSET",
+        "eventNames": [],
+        "gen_ai.operation.name": "chat",
+        "gen_ai.provider.name": "openai",
+        "gen_ai.request.model": "gpt-4o",
+        "gen_ai.request.max_tokens": 16,
+        "gen_ai.request.temperature": 0.25,
+        "gen_ai.request.top_p": 0.9,
+        "gen_ai.user": "bench",
+        "gen_ai.is_streaming": false,
+        "gen_ai.openai.api_base": "https://api.openai.com/v1",
+        "gen_ai.input.messages": "[{\"parts\": [{\"content\": \"Be terse.\", \"type\": \"text\"}], \"role\": \"system\"}, {\"parts\": [{\"content\": \"2+2?\", \"type\": \"text\"}], \"role\": \"user\"}]",
+        "gen_ai.response.model": "gpt-4o-2024-08-06",
+        "gen_ai.response.id": "chatcmpl-b1",
+        "gen_ai.response.finish_reasons": [
+          "stop"
+        ],
+        "gen_ai.openai.response.system_fingerprint": "fp_bench",
+        "gen_ai.usage.total_tokens": 14,
+        "gen_ai.usage.output_tokens": 3,
+        "gen_ai.usage.input_tokens": 11,
+        "gen_ai.usage.cache_read.input_tokens": 7,
+        "gen_ai.output.messages": "[{\"finish_reason\": \"stop\", \"parts\": [{\"content\": \"Four.\", \"type\": \"text\"}], \"role\": \"assistant\"}]"
+      }
+    ],
+    "nonstreamed-multi-choice": [
+      {
+        "step": 0,
+        "spanPresent": true,
+        "name": "openai.chat",
+        "kind": "CLIENT",
+        "status": "UNSET",
+        "eventNames": [],
+        "gen_ai.operation.name": "chat",
+        "gen_ai.provider.name": "openai",
+        "gen_ai.request.model": "gpt-4o",
+        "gen_ai.request.temperature": 0.0,
+        "gen_ai.is_streaming": false,
+        "gen_ai.openai.api_base": "https://api.openai.com/v1",
+        "gen_ai.input.messages": "[{\"parts\": [{\"content\": \"two answers please\", \"type\": \"text\"}], \"role\": \"user\"}]",
+        "gen_ai.response.model": "gpt-4o",
+        "gen_ai.response.id": "chatcmpl-b2",
+        "gen_ai.response.finish_reasons": [
+          "stop",
+          "content_filter"
+        ],
+        "gen_ai.usage.total_tokens": 38,
+        "gen_ai.usage.output_tokens": 8,
+        "gen_ai.usage.input_tokens": 30,
+        "gen_ai.output.messages": "[{\"finish_reason\": \"stop\", \"parts\": [{\"content\": \"first\", \"type\": \"text\"}], \"role\": \"assistant\"}, {\"finish_reason\": \"content_filter\", \"parts\": [{\"content\": \"I can't help with that.\", \"type\": \"refusal\"}], \"role\": \"assistant\"}]"
+      }
+    ],
+    "nonstreamed-tool-round-trip": [
+      {
+        "step": 0,
+        "spanPresent": true,
+        "name": "openai.chat",
+        "kind": "CLIENT",
+        "status": "UNSET",
+        "eventNames": [],
+        "gen_ai.operation.name": "chat",
+        "gen_ai.provider.name": "openai",
+        "gen_ai.request.model": "gpt-4o",
+        "gen_ai.is_streaming": false,
+        "gen_ai.openai.api_base": "https://api.openai.com/v1",
+        "gen_ai.input.messages": "[{\"parts\": [{\"content\": \"weather in Oslo?\", \"type\": \"text\"}], \"role\": \"user\"}, {\"parts\": [{\"arguments\": {\"city\": \"Oslo\"}, \"id\": \"call_x\", \"name\": \"get_weather\", \"type\": \"tool_call\"}], \"role\": \"assistant\"}, {\"parts\": [{\"id\": \"call_x\", \"response\": \"12C, rain\", \"type\": \"tool_call_response\"}], \"role\": \"tool\"}]",
+        "gen_ai.response.model": "gpt-4o",
+        "gen_ai.response.id": "chatcmpl-b3",
+        "gen_ai.response.finish_reasons": [
+          "stop"
+        ],
+        "gen_ai.usage.total_tokens": 45,
+        "gen_ai.usage.output_tokens": 5,
+        "gen_ai.usage.input_tokens": 40,
+        "gen_ai.output.messages": "[{\"finish_reason\": \"stop\", \"parts\": [{\"content\": \"Rainy, 12C.\", \"type\": \"text\"}], \"role\": \"assistant\"}]"
+      }
+    ],
+    "nonstreamed-inline-image": [
+      {
+        "step": 0,
+        "spanPresent": true,
+        "name": "openai.chat",
+        "kind": "CLIENT",
+        "status": "UNSET",
+        "eventNames": [],
+        "gen_ai.operation.name": "chat",
+        "gen_ai.provider.name": "openai",
+        "gen_ai.request.model": "gpt-4o",
+        "gen_ai.is_streaming": false,
+        "gen_ai.openai.api_base": "https://api.openai.com/v1",
+        "gen_ai.response.model": "gpt-4o",
+        "gen_ai.response.id": "chatcmpl-b4",
+        "gen_ai.response.finish_reasons": [
+          "stop"
+        ],
+        "gen_ai.usage.total_tokens": 93,
+        "gen_ai.usage.output_tokens": 3,
+        "gen_ai.usage.input_tokens": 90,
+        "gen_ai.output.messages": "[{\"finish_reason\": \"stop\", \"parts\": [{\"content\": \"A cat.\", \"type\": \"text\"}], \"role\": \"assistant\"}]"
+      }
+    ],
+    "providers": [
+      {
+        "step": 0,
+        "spanPresent": true,
+        "name": "openai.chat",
+        "kind": "CLIENT",
+        "status": "UNSET",
+        "eventNames": [],
+        "gen_ai.operation.name": "chat",
+        "gen_ai.provider.name": "openai",
+        "gen_ai.request.model": "openai/gpt-4o",
+        "gen_ai.is_streaming": false,
+        "gen_ai.openai.api_base": "https://api.openai.com/v1",
+        "gen_ai.input.messages": "[{\"parts\": [{\"content\": \"hi\", \"type\": \"text\"}], \"role\": \"user\"}]",
+        "gen_ai.response.model": "gpt-4o-2024-08-06",
+        "gen_ai.response.id": "chatcmpl-b5",
+        "gen_ai.response.finish_reasons": [
+          "length"
+        ],
+        "gen_ai.usage.total_tokens": 6,
+        "gen_ai.usage.output_tokens": 1,
+        "gen_ai.usage.input_tokens": 5,
+        "gen_ai.output.messages": "[{\"finish_reason\": \"length\", \"parts\": [{\"content\": \"hi\", \"type\": \"text\"}], \"role\": \"assistant\"}]"
+      },
+      {
+        "step": 1,
+        "spanPresent": true,
+        "name": "openai.chat",
+        "kind": "CLIENT",
+        "status": "UNSET",
+        "eventNames": [],
+        "gen_ai.operation.name": "chat",
+        "gen_ai.provider.name": "azure.ai.openai",
+        "gen_ai.request.model": "openai/gpt-4o",
+        "gen_ai.is_streaming": false,
+        "gen_ai.openai.api_base": "https://my-res.openai.azure.com/v1",
+        "gen_ai.input.messages": "[{\"parts\": [{\"content\": \"hi\", \"type\": \"text\"}], \"role\": \"user\"}]",
+        "gen_ai.response.model": "gpt-4o-2024-08-06",
+        "gen_ai.response.id": "chatcmpl-b5",
+        "gen_ai.response.finish_reasons": [
+          "length"
+        ],
+        "gen_ai.usage.total_tokens": 6,
+        "gen_ai.usage.output_tokens": 1,
+        "gen_ai.usage.input_tokens": 5,
+        "gen_ai.output.messages": "[{\"finish_reason\": \"length\", \"parts\": [{\"content\": \"hi\", \"type\": \"text\"}], \"role\": \"assistant\"}]"
+      },
+      {
+        "step": 2,
+        "spanPresent": true,
+        "name": "openai.chat",
+        "kind": "CLIENT",
+        "status": "UNSET",
+        "eventNames": [],
+        "gen_ai.operation.name": "chat",
+        "gen_ai.provider.name": "aws.bedrock",
+        "gen_ai.request.model": "openai/gpt-4o",
+        "gen_ai.is_streaming": false,
+        "gen_ai.openai.api_base": "https://bedrock-runtime.us-east-1.amazonaws.com/v1",
+        "gen_ai.input.messages": "[{\"parts\": [{\"content\": \"hi\", \"type\": \"text\"}], \"role\": \"user\"}]",
+        "gen_ai.response.model": "gpt-4o-2024-08-06",
+        "gen_ai.response.id": "chatcmpl-b5",
+        "gen_ai.response.finish_reasons": [
+          "length"
+        ],
+        "gen_ai.usage.total_tokens": 6,
+        "gen_ai.usage.output_tokens": 1,
+        "gen_ai.usage.input_tokens": 5,
+        "gen_ai.output.messages": "[{\"finish_reason\": \"length\", \"parts\": [{\"content\": \"hi\", \"type\": \"text\"}], \"role\": \"assistant\"}]"
+      },
+      {
+        "step": 3,
+        "spanPresent": true,
+        "name": "openai.chat",
+        "kind": "CLIENT",
+        "status": "UNSET",
+        "eventNames": [],
+        "gen_ai.operation.name": "chat",
+        "gen_ai.provider.name": "openrouter",
+        "gen_ai.request.model": "gpt-4o",
+        "gen_ai.is_streaming": false,
+        "gen_ai.openai.api_base": "https://openrouter.ai/api/v1",
+        "gen_ai.input.messages": "[{\"parts\": [{\"content\": \"hi\", \"type\": \"text\"}], \"role\": \"user\"}]",
+        "gen_ai.response.model": "gpt-4o-2024-08-06",
+        "gen_ai.response.id": "chatcmpl-b5",
+        "gen_ai.response.finish_reasons": [
+          "length"
+        ],
+        "gen_ai.usage.total_tokens": 6,
+        "gen_ai.usage.output_tokens": 1,
+        "gen_ai.usage.input_tokens": 5,
+        "gen_ai.output.messages": "[{\"finish_reason\": \"length\", \"parts\": [{\"content\": \"hi\", \"type\": \"text\"}], \"role\": \"assistant\"}]"
+      },
+      {
+        "step": 4,
+        "spanPresent": true,
+        "name": "openai.chat",
+        "kind": "CLIENT",
+        "status": "UNSET",
+        "eventNames": [],
+        "gen_ai.operation.name": "chat",
+        "gen_ai.provider.name": "gcp.vertex_ai",
+        "gen_ai.request.model": "openai/gpt-4o",
+        "gen_ai.is_streaming": false,
+        "gen_ai.openai.api_base": "https://generativelanguage.googleapis.com/v1",
+        "gen_ai.input.messages": "[{\"parts\": [{\"content\": \"hi\", \"type\": \"text\"}], \"role\": \"user\"}]",
+        "gen_ai.response.model": "gpt-4o-2024-08-06",
+        "gen_ai.response.id": "chatcmpl-b5",
+        "gen_ai.response.finish_reasons": [
+          "length"
+        ],
+        "gen_ai.usage.total_tokens": 6,
+        "gen_ai.usage.output_tokens": 1,
+        "gen_ai.usage.input_tokens": 5,
+        "gen_ai.output.messages": "[{\"finish_reason\": \"length\", \"parts\": [{\"content\": \"hi\", \"type\": \"text\"}], \"role\": \"assistant\"}]"
+      }
+    ],
+    "bedrock-model-names": [
+      {
+        "step": 0,
+        "spanPresent": true,
+        "name": "openai.chat",
+        "kind": "CLIENT",
+        "status": "UNSET",
+        "eventNames": [],
+        "gen_ai.operation.name": "chat",
+        "gen_ai.provider.name": "aws.bedrock",
+        "gen_ai.request.model": "claude-3-sonnet",
+        "gen_ai.is_streaming": false,
+        "gen_ai.openai.api_base": "https://bedrock-runtime.amazonaws.com/v1",
+        "gen_ai.input.messages": "[{\"parts\": [{\"content\": \"hi\", \"type\": \"text\"}], \"role\": \"user\"}]",
+        "gen_ai.response.model": "claude-3-sonnet",
+        "gen_ai.response.id": "chatcmpl-b6",
+        "gen_ai.response.finish_reasons": [
+          "stop"
+        ],
+        "gen_ai.usage.total_tokens": 6,
+        "gen_ai.usage.output_tokens": 1,
+        "gen_ai.usage.input_tokens": 5,
+        "gen_ai.output.messages": "[{\"finish_reason\": \"stop\", \"parts\": [{\"content\": \"hi\", \"type\": \"text\"}], \"role\": \"assistant\"}]"
+      },
+      {
+        "step": 1,
+        "spanPresent": true,
+        "name": "openai.chat",
+        "kind": "CLIENT",
+        "status": "UNSET",
+        "eventNames": [],
+        "gen_ai.operation.name": "chat",
+        "gen_ai.provider.name": "aws.bedrock",
+        "gen_ai.request.model": "claude-3-sonnet",
+        "gen_ai.is_streaming": false,
+        "gen_ai.openai.api_base": "https://bedrock-runtime.amazonaws.com/v1",
+        "gen_ai.input.messages": "[{\"parts\": [{\"content\": \"hi\", \"type\": \"text\"}], \"role\": \"user\"}]",
+        "gen_ai.response.model": "claude-3-sonnet",
+        "gen_ai.response.id": "chatcmpl-b6",
+        "gen_ai.response.finish_reasons": [
+          "stop"
+        ],
+        "gen_ai.usage.total_tokens": 6,
+        "gen_ai.usage.output_tokens": 1,
+        "gen_ai.usage.input_tokens": 5,
+        "gen_ai.output.messages": "[{\"finish_reason\": \"stop\", \"parts\": [{\"content\": \"hi\", \"type\": \"text\"}], \"role\": \"assistant\"}]"
+      },
+      {
+        "step": 2,
+        "spanPresent": true,
+        "name": "openai.chat",
+        "kind": "CLIENT",
+        "status": "UNSET",
+        "eventNames": [],
+        "gen_ai.operation.name": "chat",
+        "gen_ai.provider.name": "aws.bedrock",
+        "gen_ai.request.model": "claude-3-sonnet",
+        "gen_ai.is_streaming": false,
+        "gen_ai.openai.api_base": "https://bedrock-runtime.amazonaws.com/v1",
+        "gen_ai.input.messages": "[{\"parts\": [{\"content\": \"hi\", \"type\": \"text\"}], \"role\": \"user\"}]",
+        "gen_ai.response.model": "claude-3-sonnet",
+        "gen_ai.response.id": "chatcmpl-b6",
+        "gen_ai.response.finish_reasons": [
+          "stop"
+        ],
+        "gen_ai.usage.total_tokens": 6,
+        "gen_ai.usage.output_tokens": 1,
+        "gen_ai.usage.input_tokens": 5,
+        "gen_ai.output.messages": "[{\"finish_reason\": \"stop\", \"parts\": [{\"content\": \"hi\", \"type\": \"text\"}], \"role\": \"assistant\"}]"
+      }
+    ],
+    "streamed-sequence": [
+      {
+        "step": 0,
+        "spanPresent": false
+      },
+      {
+        "step": 1,
+        "spanPresent": false
+      },
+      {
+        "step": 2,
+        "spanPresent": false
+      },
+      {
+        "step": 3,
+        "spanPresent": false
+      },
+      {
+        "step": 4,
+        "spanPresent": false
+      },
+      {
+        "step": 5,
+        "spanPresent": false
+      },
+      {
+        "step": 6,
+        "spanPresent": true,
+        "name": "openai.chat",
+        "kind": "CLIENT",
+        "status": "OK",
+        "eventNames": [
+          "gen_ai.content.completion.chunk",
+          "gen_ai.content.completion.chunk",
+          "gen_ai.content.completion.chunk",
+          "gen_ai.content.completion.chunk",
+          "gen_ai.content.completion.chunk",
+          "gen_ai.content.completion.chunk"
+        ],
+        "gen_ai.operation.name": "chat",
+        "gen_ai.provider.name": "openai",
+        "gen_ai.request.model": "gpt-4o",
+        "gen_ai.is_streaming": true,
+        "gen_ai.openai.api_base": "https://api.openai.com/v1",
+        "gen_ai.input.messages": "[{\"parts\": [{\"content\": \"weather in Oslo?\", \"type\": \"text\"}], \"role\": \"user\"}]",
+        "gen_ai.response.model": "gpt-4o-2024-08-06",
+        "gen_ai.response.id": "chatcmpl-b7",
+        "gen_ai.response.finish_reasons": [
+          "stop"
+        ],
+        "gen_ai.usage.total_tokens": 29,
+        "gen_ai.usage.output_tokens": 9,
+        "gen_ai.usage.input_tokens": 20,
+        "gen_ai.output.messages": "[{\"finish_reason\": \"stop\", \"parts\": [{\"content\": \"Let me check.\", \"type\": \"text\"}], \"role\": \"assistant\"}]"
+      }
+    ],
+    "streamed-tool-arguments": [
+      {
+        "step": 0,
+        "spanPresent": false
+      },
+      {
+        "step": 1,
+        "spanPresent": false
+      },
+      {
+        "step": 2,
+        "spanPresent": false
+      },
+      {
+        "step": 3,
+        "spanPresent": false
+      },
+      {
+        "step": 4,
+        "spanPresent": false
+      },
+      {
+        "step": 5,
+        "spanPresent": true,
+        "name": "openai.chat",
+        "kind": "CLIENT",
+        "status": "OK",
+        "eventNames": [
+          "gen_ai.content.completion.chunk",
+          "gen_ai.content.completion.chunk",
+          "gen_ai.content.completion.chunk",
+          "gen_ai.content.completion.chunk",
+          "gen_ai.content.completion.chunk"
+        ],
+        "gen_ai.operation.name": "chat",
+        "gen_ai.provider.name": "openai",
+        "gen_ai.request.model": "gpt-4o",
+        "gen_ai.is_streaming": true,
+        "gen_ai.openai.api_base": "https://api.openai.com/v1",
+        "gen_ai.input.messages": "[{\"parts\": [{\"content\": \"weather in Oslo?\", \"type\": \"text\"}], \"role\": \"user\"}]",
+        "gen_ai.response.model": "gpt-4o-2024-08-06",
+        "gen_ai.response.id": "chatcmpl-b8",
+        "gen_ai.response.finish_reasons": [
+          "tool_call"
+        ],
+        "gen_ai.usage.total_tokens": 29,
+        "gen_ai.usage.output_tokens": 9,
+        "gen_ai.usage.input_tokens": 20,
+        "gen_ai.output.messages": "[{\"finish_reason\": \"tool_call\", \"parts\": [{\"content\": \"\", \"type\": \"text\"}, {\"arguments\": {\"city\": \"Oslo\"}, \"id\": \"call_a\", \"name\": \"get_weather\", \"type\": \"tool_call\"}], \"role\": \"assistant\"}]"
+      }
+    ],
+    "stream-arrival-order-ties": [
+      {
+        "step": 0,
+        "delivered": "ABCD",
+        "deliveredIndices": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "raised": null,
+        "spanPresent": true,
+        "name": "openai.chat",
+        "kind": "CLIENT",
+        "status": "OK",
+        "eventNames": [
+          "gen_ai.content.completion.chunk",
+          "gen_ai.content.completion.chunk",
+          "gen_ai.content.completion.chunk",
+          "gen_ai.content.completion.chunk",
+          "gen_ai.content.completion.chunk"
+        ],
+        "gen_ai.operation.name": "chat",
+        "gen_ai.provider.name": "openai",
+        "gen_ai.request.model": "gpt-4o",
+        "gen_ai.is_streaming": true,
+        "gen_ai.openai.api_base": "https://api.openai.com/v1",
+        "gen_ai.input.messages": "[{\"parts\": [{\"content\": \"spell it\", \"type\": \"text\"}], \"role\": \"user\"}]",
+        "gen_ai.response.model": "gpt-4o",
+        "gen_ai.response.id": "chatcmpl-b9",
+        "gen_ai.response.finish_reasons": [
+          "stop"
+        ],
+        "gen_ai.output.messages": "[{\"finish_reason\": \"stop\", \"parts\": [{\"content\": \"ABCD\", \"type\": \"text\"}], \"role\": \"assistant\"}]"
+      },
+      {
+        "step": 1,
+        "delivered": "BCDA",
+        "deliveredIndices": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "raised": null,
+        "spanPresent": true,
+        "name": "openai.chat",
+        "kind": "CLIENT",
+        "status": "OK",
+        "eventNames": [
+          "gen_ai.content.completion.chunk",
+          "gen_ai.content.completion.chunk",
+          "gen_ai.content.completion.chunk",
+          "gen_ai.content.completion.chunk",
+          "gen_ai.content.completion.chunk"
+        ],
+        "gen_ai.operation.name": "chat",
+        "gen_ai.provider.name": "openai",
+        "gen_ai.request.model": "gpt-4o",
+        "gen_ai.is_streaming": true,
+        "gen_ai.openai.api_base": "https://api.openai.com/v1",
+        "gen_ai.input.messages": "[{\"parts\": [{\"content\": \"spell it\", \"type\": \"text\"}], \"role\": \"user\"}]",
+        "gen_ai.response.model": "gpt-4o",
+        "gen_ai.response.id": "chatcmpl-b9",
+        "gen_ai.response.finish_reasons": [
+          "stop"
+        ],
+        "gen_ai.output.messages": "[{\"finish_reason\": \"stop\", \"parts\": [{\"content\": \"BCDA\", \"type\": \"text\"}], \"role\": \"assistant\"}]"
+      },
+      {
+        "step": 2,
+        "delivered": "CDAB",
+        "deliveredIndices": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "raised": null,
+        "spanPresent": true,
+        "name": "openai.chat",
+        "kind": "CLIENT",
+        "status": "OK",
+        "eventNames": [
+          "gen_ai.content.completion.chunk",
+          "gen_ai.content.completion.chunk",
+          "gen_ai.content.completion.chunk",
+          "gen_ai.content.completion.chunk",
+          "gen_ai.content.completion.chunk"
+        ],
+        "gen_ai.operation.name": "chat",
+        "gen_ai.provider.name": "openai",
+        "gen_ai.request.model": "gpt-4o",
+        "gen_ai.is_streaming": true,
+        "gen_ai.openai.api_base": "https://api.openai.com/v1",
+        "gen_ai.input.messages": "[{\"parts\": [{\"content\": \"spell it\", \"type\": \"text\"}], \"role\": \"user\"}]",
+        "gen_ai.response.model": "gpt-4o",
+        "gen_ai.response.id": "chatcmpl-b9",
+        "gen_ai.response.finish_reasons": [
+          "stop"
+        ],
+        "gen_ai.output.messages": "[{\"finish_reason\": \"stop\", \"parts\": [{\"content\": \"CDAB\", \"type\": \"text\"}], \"role\": \"assistant\"}]"
+      },
+      {
+        "step": 3,
+        "delivered": "DABC",
+        "deliveredIndices": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "raised": null,
+        "spanPresent": true,
+        "name": "openai.chat",
+        "kind": "CLIENT",
+        "status": "OK",
+        "eventNames": [
+          "gen_ai.content.completion.chunk",
+          "gen_ai.content.completion.chunk",
+          "gen_ai.content.completion.chunk",
+          "gen_ai.content.completion.chunk",
+          "gen_ai.content.completion.chunk"
+        ],
+        "gen_ai.operation.name": "chat",
+        "gen_ai.provider.name": "openai",
+        "gen_ai.request.model": "gpt-4o",
+        "gen_ai.is_streaming": true,
+        "gen_ai.openai.api_base": "https://api.openai.com/v1",
+        "gen_ai.input.messages": "[{\"parts\": [{\"content\": \"spell it\", \"type\": \"text\"}], \"role\": \"user\"}]",
+        "gen_ai.response.model": "gpt-4o",
+        "gen_ai.response.id": "chatcmpl-b9",
+        "gen_ai.response.finish_reasons": [
+          "stop"
+        ],
+        "gen_ai.output.messages": "[{\"finish_reason\": \"stop\", \"parts\": [{\"content\": \"DABC\", \"type\": \"text\"}], \"role\": \"assistant\"}]"
+      },
+      {
+        "step": 4,
+        "delivered": "DCBA",
+        "deliveredIndices": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "raised": null,
+        "spanPresent": true,
+        "name": "openai.chat",
+        "kind": "CLIENT",
+        "status": "OK",
+        "eventNames": [
+          "gen_ai.content.completion.chunk",
+          "gen_ai.content.completion.chunk",
+          "gen_ai.content.completion.chunk",
+          "gen_ai.content.completion.chunk",
+          "gen_ai.content.completion.chunk"
+        ],
+        "gen_ai.operation.name": "chat",
+        "gen_ai.provider.name": "openai",
+        "gen_ai.request.model": "gpt-4o",
+        "gen_ai.is_streaming": true,
+        "gen_ai.openai.api_base": "https://api.openai.com/v1",
+        "gen_ai.input.messages": "[{\"parts\": [{\"content\": \"spell it\", \"type\": \"text\"}], \"role\": \"user\"}]",
+        "gen_ai.response.model": "gpt-4o",
+        "gen_ai.response.id": "chatcmpl-b9",
+        "gen_ai.response.finish_reasons": [
+          "stop"
+        ],
+        "gen_ai.output.messages": "[{\"finish_reason\": \"stop\", \"parts\": [{\"content\": \"DCBA\", \"type\": \"text\"}], \"role\": \"assistant\"}]"
+      }
+    ],
+    "stream-arrival-order-distinct": [
+      {
+        "step": 0,
+        "delivered": "ABC",
+        "deliveredIndices": [
+          0,
+          1,
+          2
+        ],
+        "raised": null,
+        "spanPresent": true,
+        "name": "openai.chat",
+        "kind": "CLIENT",
+        "status": "OK",
+        "eventNames": [
+          "gen_ai.content.completion.chunk",
+          "gen_ai.content.completion.chunk",
+          "gen_ai.content.completion.chunk",
+          "gen_ai.content.completion.chunk"
+        ],
+        "gen_ai.operation.name": "chat",
+        "gen_ai.provider.name": "openai",
+        "gen_ai.request.model": "gpt-4o",
+        "gen_ai.is_streaming": true,
+        "gen_ai.openai.api_base": "https://api.openai.com/v1",
+        "gen_ai.input.messages": "[{\"parts\": [{\"content\": \"three answers\", \"type\": \"text\"}], \"role\": \"user\"}]",
+        "gen_ai.response.model": "gpt-4o",
+        "gen_ai.response.id": "chatcmpl-b12",
+        "gen_ai.response.finish_reasons": [
+          "stop"
+        ],
+        "gen_ai.output.messages": "[{\"finish_reason\": \"stop\", \"parts\": [{\"content\": \"A\", \"type\": \"text\"}], \"role\": \"assistant\"}, {\"finish_reason\": \"\", \"parts\": [{\"content\": \"B\", \"type\": \"text\"}], \"role\": \"assistant\"}, {\"finish_reason\": \"\", \"parts\": [{\"content\": \"C\", \"type\": \"text\"}], \"role\": \"assistant\"}]"
+      },
+      {
+        "step": 1,
+        "delivered": "BCA",
+        "deliveredIndices": [
+          1,
+          2,
+          0
+        ],
+        "raised": "IndexError",
+        "spanPresent": false
+      },
+      {
+        "step": 2,
+        "delivered": "CAB",
+        "deliveredIndices": [
+          2,
+          0,
+          1
+        ],
+        "raised": "IndexError",
+        "spanPresent": true,
+        "name": "openai.chat",
+        "kind": "CLIENT",
+        "status": "OK",
+        "eventNames": [
+          "gen_ai.content.completion.chunk"
+        ],
+        "gen_ai.operation.name": "chat",
+        "gen_ai.provider.name": "openai",
+        "gen_ai.request.model": "gpt-4o",
+        "gen_ai.is_streaming": true,
+        "gen_ai.openai.api_base": "https://api.openai.com/v1",
+        "gen_ai.input.messages": "[{\"parts\": [{\"content\": \"three answers\", \"type\": \"text\"}], \"role\": \"user\"}]",
+        "gen_ai.response.model": "gpt-4o",
+        "gen_ai.response.id": "chatcmpl-b12",
+        "gen_ai.output.messages": "[{\"finish_reason\": \"\", \"parts\": [{\"content\": \"\", \"type\": \"text\"}], \"role\": \"assistant\"}]"
+      },
+      {
+        "step": 3,
+        "delivered": "CBA",
+        "deliveredIndices": [
+          2,
+          1,
+          0
+        ],
+        "raised": "IndexError",
+        "spanPresent": true,
+        "name": "openai.chat",
+        "kind": "CLIENT",
+        "status": "OK",
+        "eventNames": [
+          "gen_ai.content.completion.chunk"
+        ],
+        "gen_ai.operation.name": "chat",
+        "gen_ai.provider.name": "openai",
+        "gen_ai.request.model": "gpt-4o",
+        "gen_ai.is_streaming": true,
+        "gen_ai.openai.api_base": "https://api.openai.com/v1",
+        "gen_ai.input.messages": "[{\"parts\": [{\"content\": \"three answers\", \"type\": \"text\"}], \"role\": \"user\"}]",
+        "gen_ai.response.model": "gpt-4o",
+        "gen_ai.response.id": "chatcmpl-b12",
+        "gen_ai.output.messages": "[{\"finish_reason\": \"\", \"parts\": [{\"content\": \"\", \"type\": \"text\"}], \"role\": \"assistant\"}]"
+      }
+    ],
+    "failure": [
+      {
+        "step": 0,
+        "spanPresent": true,
+        "name": "openai.chat",
+        "kind": "CLIENT",
+        "status": "ERROR",
+        "eventNames": [
+          "exception"
+        ],
+        "gen_ai.operation.name": "chat",
+        "gen_ai.provider.name": "openai",
+        "gen_ai.request.model": "gpt-4o",
+        "gen_ai.is_streaming": false,
+        "gen_ai.openai.api_base": "https://api.openai.com/v1",
+        "gen_ai.input.messages": "[{\"parts\": [{\"content\": \"hi\", \"type\": \"text\"}], \"role\": \"user\"}]",
+        "error.type": "InternalServerError"
+      }
+    ],
+    "content-off": [
+      {
+        "step": 0,
+        "spanPresent": true,
+        "name": "openai.chat",
+        "kind": "CLIENT",
+        "status": "UNSET",
+        "eventNames": [],
+        "gen_ai.operation.name": "chat",
+        "gen_ai.provider.name": "openai",
+        "gen_ai.request.model": "gpt-4o",
+        "gen_ai.is_streaming": false,
+        "gen_ai.openai.api_base": "https://api.openai.com/v1",
+        "gen_ai.response.model": "gpt-4o",
+        "gen_ai.response.id": "chatcmpl-b10",
+        "gen_ai.response.finish_reasons": [
+          "stop"
+        ],
+        "gen_ai.usage.total_tokens": 6,
+        "gen_ai.usage.output_tokens": 1,
+        "gen_ai.usage.input_tokens": 5
+      }
+    ],
+    "suppressed": [
+      {
+        "step": 0,
+        "spanPresent": false
+      }
+    ]
+  },
+  "timing": {
+    "workload": "nonstreamed-basic",
+    "iterations": 2000,
+    "microsecondsPerDerivation": 669.596,
+    "microsecondsPerDerivationWithoutThePromptStep": 33.048
+  }
+}
