@@ -25,7 +25,7 @@ The specifications the port was generated from are in
 
 📉 1,210 Python lines → **589 Java lines**<br>
 📁 4 files → **16 files**<br>
-⚡ 552 → **3.8** microseconds to turn one recorded call into a finished record<br>
+⚡ 462 → **3.8** microseconds to turn one recorded call into a finished record<br>
 🎯 delivery orders of three answers survived: 1 of 4 → **4 of 4**<br>
 🖼️ pieces of a question kept when one of them is a picture: 0 of 3 → **3 of 3**<br>
 🔌 pieces of a partly-arrived answer that survive a restart: 0 → **all of them**<br>
@@ -38,9 +38,9 @@ Full method and the numbers that did *not* make this list:
 
 ## What it took to build
 
-⏱️ **1.6 hours** from the first command to the published repository, **1.2** of them active<br>
-💬 **296** exchanges with the model<br>
-✍️ **312,181** tokens written by the model, **61,533,967** counting everything sent and re-sent<br>
+⏱️ **1.7 hours** from the first command to the published repository, **1.4** of them active<br>
+💬 **338** exchanges with the model<br>
+✍️ **344,556** tokens written by the model, **77,791,167** counting everything sent and re-sent<br>
 🙋 **0** questions to a human<br>
 🧪 **64** tests
 
